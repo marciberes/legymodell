@@ -1,0 +1,42 @@
+.choice{
+    color: black;
+}
+.choice:hover{
+    text-decoration: none;
+    color: black;
+    font-size: 32pt;
+}
+.flexbox-container{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+.flexbox-item{
+    display: flex;
+    width: 50%;
+    min-height: 90vh;
+    box-sizing: border-box;
+    margin: 0 0 0 0;
+    float: left;
+    justify-content: center;
+    align-items: center;
+}
+
+.flexbox-item-2{
+    display: flex;
+    left: 0;
+    background: lightcoral;
+
+}
+.flexbox-item-3{
+    right: 0;
+    background: khaki;
+}
+.flexbox-item-2:hover{
+    background: red;
+}
+.flexbox-item-3:hover{
+    background: yellow;
+}
