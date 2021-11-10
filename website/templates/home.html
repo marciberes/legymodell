@@ -1,2 +1,82 @@
 {% extends "base.html" %}
 {% block title%}Home{% endblock %}
+{%block style%}
+<style>
+@media (min-width: 768px) {
+    .h-md-100 { height: 94.1vh; }
+}
+.btn-round { border-radius: 30px; }
+.bg-indigo { background: indigo; }
+.text-cyan { color: #35bdff; }
+.left {background-image: url("/static/javac.jpg"); background-size: cover;}
+.right {background-image: url("/static/python.jpg"); background-size: cover;}
+.more-text-properties{font-size: 600%;font-family: 'Open Sans', sans-serif;}
+.button{
+  font-family: 'Open Sans', sans-serif;
+  font-weight:900;
+  border: 1px solid white;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  width: 15em;
+  padding: 0.7em;
+  font-size: 100%;
+  display: inline-block;
+  cursor: pointer;
+}
+.leftside{
+    background-color: white;
+    color: deepskyblue;
+}
+.rightside{
+    background-color: white;
+    color: orange;
+}
+.leftside:hover{
+    background-color: deepskyblue;
+    border-color: deepskyblue;
+    color: white;  
+    cursor: pointer;
+    text-decoration: none;
+}
+.rightside:hover{
+    background-color: darkorange;
+    border-color: darkorange;
+    color: white;  
+    cursor: pointer;
+    text-decoration: none;
+}
+
+</style>
+
+{%endblock%}
+{% block content %}
+<div class="d-md-flex h-md-100 align-items-center">
+    <div class="col-md-6 p-0 h-md-100 left">
+        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+            <div>
+                <div class = "text-uppercase display-4 font-weight-bolder more-text-properties">
+                Modell <br> lennél?
+                </div>
+                <a class='button text-uppercase leftside' href="/ads">
+                Kattints ide!
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 p-0 h-md-100 right">
+        <div class="text-white d-md-flex align-items-center h-100 p-5 text-center justify-content-center">
+            <div>
+                <div class = "text-uppercase display-4 font-weight-bolder more-text-properties">
+                Modellt <br> keresel?
+                </div>
+                <a class='button text-uppercase rightside' href="/create-ad">
+                Kattints ide!
+                </a>
+            </div>
+        </div>
+    </div>
+        
+</div>
+{%endblock%}
