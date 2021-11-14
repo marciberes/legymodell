@@ -1,0 +1,106 @@
+{% extends "base.html" %} {%block title%} Sign Up {%endblock%} {% block
+sign_up%}
+
+<style>
+  body {
+    background-color: #2e2a27;
+  }
+  .col-md-8 {
+    background: gray;
+    margin-top: 60px;
+    margin-bottom: 60px;
+    border-radius: 10px;
+    border-color: gray;
+    border: 3px;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  ul a {
+    font-size: 29px;
+  }
+  label {
+    color: darkgray;
+    font-size: 19px;
+  }
+  ul a:hover {
+    text-decoration: none;
+  }
+  .btn {
+    background-color: white;
+    color: orange;
+  }
+</style>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="row">
+          <div
+            class="col-md-4"
+            style="background: #e06914; margin: 10px 10px 10px 10px"
+          >
+            Lorem Ipsum <br />
+            Lorem Ipsum <br />Lorem Ipsum
+          </div>
+          <div class="col-md-7">
+            <ul>
+              <form method="GET">
+                <div class="form-group">
+                  <a style="color: darkgray" href="/login">Login</a>
+                  <label style="font-size: 29px">/</label>
+                  <a style="color: orange" href="#">Sign Up</a>
+                  <br />
+                  <label class="label control-label" style="margin-top: 35px"
+                    >Email cím</label
+                  >
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Email cím"
+                  />
+                  <label class="label control-label" style="margin-top: 35px"
+                    >Keresztnév</label
+                  >
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="firstName"
+                    name="firstName"
+                    placeholder="Keresztnév"
+                  />
+                  <label class="label control-label" style="margin-top: 35px"
+                    >Jelszó</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Jelszó"
+                  />
+                  <label class="label control-label" style="margin-top: 35px"
+                    >Jelszó megerősítése</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password2"
+                    name="password2"
+                    placeholder="Jelszó megerősítése"
+                  />
+                </div>
+                <button type="submit" class="btn">Regisztrálok</button>
+              </form>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</body>
+{%endblock%}

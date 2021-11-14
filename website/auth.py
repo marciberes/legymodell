@@ -23,7 +23,7 @@ def login():
         else:
             flash('Email does not exist.', category='error')
 
-    return "<h1>LOGIN TESTING</h1>"
+    return render_template("login.html")
 
 @auth.route('/logout')
 @login_required
@@ -60,4 +60,4 @@ def sign_up():
             flash('Account created!', category='success')
             return redirect(url_for('views.home'))
 
-    return "<h1>SIGN-UP TESTING</h1>"
+    return render_template("sign_up.html")
