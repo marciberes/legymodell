@@ -1,0 +1,83 @@
+{% extends "base.html" %}{%block title%} Login {%endblock%} {% block login %}
+<style>
+  body {
+    background-color: #2e2a27;
+  }
+  .col-md-8 {
+    background: gray;
+    margin-top: 120px;
+    border-radius: 10px;
+    border-color: gray;
+    border: 3px;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  ul a {
+    font-size: 29px;
+  }
+  label {
+    color: darkgray;
+    font-size: 19px;
+  }
+  ul a:hover {
+    text-decoration: none;
+  }
+  .btn {
+    background-color: white;
+    color: orange;
+  }
+</style>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+        <div class="row">
+          <div
+            class="col-md-4"
+            style="background: #e06914; margin: 10px 10px 10px 10px"
+          >
+            Lorem Ipsum <br />
+            Lorem Ipsum <br />Lorem Ipsum
+          </div>
+          <div class="col-md-7">
+            <ul>
+              <a style="color: orange" href="#">Login</a>
+              <label style="font-size: 29px">/</label>
+              <a style="color: darkgray" href="/sign-up">Sign Up</a>
+              <br />
+              <label class="label control-label" style="margin-top: 40px"
+                >Email cím</label
+              >
+              <form method="POST">
+                <div class="form-group">
+                  <input
+                    type="email"
+                    class="form-control"
+                    id="email"
+                    name="email"
+                    placeholder="Email cím"
+                  />
+                  <label class="label control-label" style="margin-top: 40px"
+                    >Jelszó</label
+                  >
+                  <input
+                    type="password"
+                    class="form-control"
+                    id="password"
+                    name="password"
+                    placeholder="Jelszó"
+                  />
+                </div>
+                <button type="submit" class="btn">Bejelentkezek</button>
+              </form>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2"></div>
+    </div>
+  </div>
+</body>
+{%endblock%}
