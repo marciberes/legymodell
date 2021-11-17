@@ -1,11 +1,11 @@
 {% extends "base.html" %}{%block title%} Login {%endblock%} {% block login %}
 <style>
   body {
-    background-color: #2e2a27;
+    background-image: url("/static/triangles_background.png"); background-size: cover;
   }
   .col-md-8 {
-    background: gray;
-    margin-top: 120px;
+    background: white;
+    margin-top: 60px;
     border-radius: 10px;
     border-color: gray;
     border: 3px;
@@ -15,6 +15,8 @@
   }
   ul a {
     font-size: 29px;
+    text-decoration: none;
+    color: darkgray;
   }
   label {
     color: darkgray;
@@ -24,31 +26,48 @@
     text-decoration: none;
   }
   .btn {
-    background-color: white;
-    color: orange;
+    background-color: orange;
+    color: white;
   }
+  img {
+    margin-top: 10%;
+    left: 50%;
+  }
+  .signUp:hover{
+    color: orange;
+    font-weight: 250;
+    }
 </style>
 <body>
   <div class="container">
     <div class="row">
       <div class="col-md-2"></div>
-      <div class="col-md-8">
+      <div class="col-md-8" style="border-radius: 0%;">
         <div class="row">
           <div
-            class="col-md-4"
-            style="background: #e06914; margin: 10px 10px 10px 10px"
+            class="col-md-5"
+            style="background-image: url(&quot/static/triangles_orange.png&quot); background-size: cover; padding-bottom: 1em;"
           >
-            Lorem Ipsum <br />
-            Lorem Ipsum <br />Lorem Ipsum
+          <div style="color: white;">
+            <img src="/static/loremlogo2.png" style="margin-right: 40px;">
+            <p style="text-align:center; font-size: 200%; font-weight: bold; margin-top: 1em;">Dolor!</p>
+            <p style="text-align: center;">sit amet, consectetur <br> adipisicing elit<p><br>
+            <ul style="list-style-type: circle;">
+              <li>sed do eiusmod tempor</li>
+              <li>incididunt ut labore</li>
+              <li>incididunt ut labore</li>
+              <li>et dolore magna aliqua.</li>
+            </ul>
+          </div>
           </div>
           <div class="col-md-7">
             <ul>
-              <a style="color: orange" href="#">Login</a>
+              <a style="color: orange; font-size: 200%; font-weight: 500;">Login</a>
               <label style="font-size: 29px">/</label>
-              <a style="color: darkgray" href="/sign-up">Sign Up</a>
+              <a href="/sign-up" class="signUp">Sign Up</a>
               <br />
               <label class="label control-label" style="margin-top: 40px"
-                >Email cím</label
+                ></label
               >
               <form method="POST">
                 <div class="form-group">
@@ -60,7 +79,7 @@
                     placeholder="Email cím"
                   />
                   <label class="label control-label" style="margin-top: 40px"
-                    >Jelszó</label
+                    ></label
                   >
                   <input
                     type="password"
