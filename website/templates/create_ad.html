@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+{% block title%}Create ad{% endblock %}
+{% block style %}
+<style>
+    body {
+      background-image: url("/static/triangles_white.png"); background-size: cover;
+    }
+    .col-md-8 {
+    margin-top: 60px;
+    bottom: 0px;
+  }
+  label{
+      color: white;
+      font-weight: bolder;
+    }
+    .form-group{
+        margin-bottom: 5em;
+    }
+    .header{
+        background-image: url("/static/triangles_orange.png"); background-size: cover;
+        justify-content: center;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        color: white;
+        font-family: 'Open Sans' sans-serif;
+        font-size: 300%;
+        font-weight: 700;
+    }
+    .footnote{
+        font-size: 0;
+    }
+    select {
+        font-family: 'FontAwesome', 'Second Font name'
+        }
+    .footnote::before{
+    content:"?";
+    font-size: 16px;
+    padding-right: 1em;
+    }
+    .footnote:hover::before{
+    background-color: #2e2a27;
+    }
+    .footnote:hover{
+        font-size: 16px;
+        background-color: white;
+    }
+</style>
+{%endblock%}
+{% block script %}
+<script type="text/javascript">
+    var i = 1
+    function thisF(){
+        if (i < 3){
+        var contacts = document.getElementById("contacts");
+        var input = document.createElement("input");
+        input.type = "text";
+        input.id = "elerhetoseg"+i
+        input.name="elerhetoseg"+i 
+        input.placeholder="Add meg az elérhetőségeid" 
+        input.type="text" 
+        input.className="form-control"
+        var myParent = document.getElementById("contacts_ico");
+
+        //Create array of options to be added
+        var array = ["","",""];
+
+        //Create and append select list
+        var selectList = document.createElement("select");
+        selectList.id = "elerhetoseg_ico"+i;
+        selectList.className="form-control custom-form-control";
+
+        //Create and append the options
+        for (var j = 0; j < array.length; j++) {
+            var option = document.createElement("option");
+            option.text = array[j];
+            selectList.appendChild(option);
+        }
+        myParent.appendChild(document.createElement("br"))
+        myParent.appendChild(selectList);
+        contacts.appendChild(document.createElement("br"))
+        contacts.appendChild(input);
+        i = i + 1
+        }
+    }
+</script>
+{%endblock%}
+{% block content %}
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="border-radius: 0%; background-image: url(&quot/static/triangles_background.png&quot); background-size: cover;">
+          <div class="row header">Keress modellt!</div>
+            <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-8">
+                <form method="POST">
+                    <div class="form-group row">
+                      <label for="category" class="col-4 col-form-label" style="font-size: 125%;">Kategória:</label> 
+                      <div class="col-8">
+                        <select id="category" name="category" required="required" class="custom-select">
+                          <option value="hairdresser">Fodrász</option>
+                          <option value="manicure">Körmös</option>
+                          <option value="cosmetician">Kozmetikus</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="address" class="col-4 col-form-label" style="font-size: 125%;">Cím</label> 
+                      <div class="col-8">
+                        <input id="address" name="address" placeholder="Írd ide a címet" type="text" required="required" class="form-control">
+                        <span id="selectHelpBlock" class="form-text text-muted">Milyen címet <span class="footnote">A GECÍMET X'DDDD</span></span>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="prev_jobs" class="col-4 col-form-label" style="font-size: 125%;">Korábbi munkák</label> 
+                      <div class="col-8">
+                        <div class="input-group">
+                          <input id="prev_jobs" name="prev_jobs" placeholder="Kattints ide a képek feltöltéséhez" type="text" class="form-control"> 
+                          <div class="input-group-append">
+                            <div class="input-group-text">
+                              <i class="fa fa-arrow-up"></i>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="elerhetoseg" class="col-4 col-form-label" style="font-size: 125%;">Elérhetőség</label>
+                      <div class="col-md-2.5" style="margin-left: 1em;">
+                        <select id="elerhetoseg_ico" class="form-control">
+                            <option>&#xf230</option>
+                            <option>&#xf16d</option>
+                            <option>&#xf2ac</option>
+                          </select>
+                          <div id = "contacts_ico">    
+                          </div>
+                      </div>
+                      <div class="col-md-6" style="margin-left: 0.45em;">
+                        <input id="elerhetoseg" name="elerhetoseg" placeholder="Add meg az elérhetőségeid" type="text" class="form-control" required="required">
+                        <div id = "contacts">    
+                        </div>
+                        <br>
+                        <a class="btn" onclick="thisF()" style="background-color: #e06914; color: white;">+</a>
+                    </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="select" class="col-4 col-form-label" style="font-size: 125%;">Hírdetés típusa</label> 
+                      <div class="col-8">
+                        <select id="select" name="select" class="custom-select" aria-describedby="selectHelpBlock" required="required">
+                          <option value="exam" >Vizsga</option>
+                          <option value="practice">Gyakorlás</option>
+                        </select> 
+                        <span id="selectHelpBlock" class="form-text text-muted">Vizsgára, vagy csak gyakorlásra keresel modellt?</span>
+                      </div>
+                    </div> 
+                    <div class="form-group row">
+                      <div class="offset-4 col-8">
+                        <button name="submit" type="submit" class="btn" style="background-color: #e06914; color: white;">Hírdetés feladása</button>
+                      </div>
+                    </div>
+                  </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+{%endblock%}
