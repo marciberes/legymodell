@@ -55,7 +55,7 @@
         var input = document.createElement("input");
         input.type = "text";
         input.id = "contact"+i
-        input.name="contact"+i 
+        input.name="contacts.contact"+i 
         input.placeholder="Add meg az elérhetőségeid" 
         input.type="text" 
         input.className="form-control"
@@ -67,12 +67,22 @@
         //Create and append select list
         var selectList = document.createElement("select");
         selectList.id = "contact_ico"+i;
+        selectList.name = "contacts_ico.contact_ico"+i
         selectList.className="form-control custom-form-control";
 
         //Create and append the options
         for (var j = 0; j < array.length; j++) {
             var option = document.createElement("option");
             option.text = array[j];
+            if (array[j] == ""){
+                option.value = "fb";
+            }
+            else if (array[j] == ""){
+                option.value = "insta";
+            }
+            else if (array[j] == ""){
+                option.value = "snap";
+            }
             selectList.appendChild(option);
         }
         myParent.appendChild(document.createElement("br"))
@@ -127,10 +137,10 @@
                     <div class="form-group row">
                       <label for="contact" class="col-4 col-form-label" style="font-size: 125%;">Elérhetőség</label>
                       <div class="col-md-2.5" style="margin-left: 1em;">
-                        <select id="contact_ico" class="form-control">
-                            <option>&#xf230</option>
-                            <option>&#xf16d</option>
-                            <option>&#xf2ac</option>
+                        <select id="contact_ico" name="contact_ico" class="form-control custom-select">
+                            <option value = "fb">&#xf230</option>
+                            <option value = "insta">&#xf16d</option>
+                            <option value = "snap">&#xf2ac</option>
                           </select>
                           <div id = "contacts_ico">    
                           </div>
