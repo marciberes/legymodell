@@ -54,8 +54,8 @@
         var contacts = document.getElementById("contacts");
         var input = document.createElement("input");
         input.type = "text";
-        input.id = "elerhetoseg"+i
-        input.name="elerhetoseg"+i 
+        input.id = "contact"+i
+        input.name="contact"+i 
         input.placeholder="Add meg az elérhetőségeid" 
         input.type="text" 
         input.className="form-control"
@@ -66,7 +66,7 @@
 
         //Create and append select list
         var selectList = document.createElement("select");
-        selectList.id = "elerhetoseg_ico"+i;
+        selectList.id = "contact_ico"+i;
         selectList.className="form-control custom-form-control";
 
         //Create and append the options
@@ -125,9 +125,9 @@
                       </div>
                     </div>
                     <div class="form-group row">
-                      <label for="elerhetoseg" class="col-4 col-form-label" style="font-size: 125%;">Elérhetőség</label>
+                      <label for="contact" class="col-4 col-form-label" style="font-size: 125%;">Elérhetőség</label>
                       <div class="col-md-2.5" style="margin-left: 1em;">
-                        <select id="elerhetoseg_ico" class="form-control">
+                        <select id="contact_ico" class="form-control">
                             <option>&#xf230</option>
                             <option>&#xf16d</option>
                             <option>&#xf2ac</option>
@@ -136,7 +136,7 @@
                           </div>
                       </div>
                       <div class="col-md-6" style="margin-left: 0.45em;">
-                        <input id="elerhetoseg" name="elerhetoseg" placeholder="Add meg az elérhetőségeid" type="text" class="form-control" required="required">
+                        <input id="contact" name="contact" placeholder="Add meg az elérhetőségeid" type="text" class="form-control" required="required">
                         <div id = "contacts">    
                         </div>
                         <br>
@@ -144,9 +144,9 @@
                     </div>
                     </div>
                     <div class="form-group row">
-                      <label for="select" class="col-4 col-form-label" style="font-size: 125%;">Hírdetés típusa</label> 
+                      <label for="adtype" class="col-4 col-form-label" style="font-size: 125%;">Hírdetés típusa</label> 
                       <div class="col-8">
-                        <select id="select" name="select" class="custom-select" aria-describedby="selectHelpBlock" required="required">
+                        <select id="adtype" name="adtype" class="custom-select" aria-describedby="selectHelpBlock" required="required">
                           <option value="exam" >Vizsga</option>
                           <option value="practice">Gyakorlás</option>
                         </select> 
