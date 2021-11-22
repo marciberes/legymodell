@@ -9,10 +9,60 @@ views = Blueprint('views', __name__)
 def home():
     return render_template("home.html")
 
-@views.route('/ads')
-@login_required
+@views.route('/ads',methods=['GET', 'POST'])
+#@login_required
 def ads():
-    return "<h1>ADS TESTING</h1>"
+    category = []
+    address = []
+    contact = []
+    adtype = []
+    row=0
+    if request.method == 'POST':
+        category_filter = request.form.get('category')
+        contact_filter = request.form.get('contact')
+        adtype_filter = request.form.get('adtype')
+        reference_filter = request.form.get('reference')
+        row=0
+        if adtype_filter == "" and category_filter == "":
+            ads=Ad.query.all()
+        elif adtype_filter != "" and category_filter !="":
+            ads=Ad.query.filter_by(adtype=adtype_filter,category=category_filter).all()
+        elif adtype_filter == "" and category_filter!="":
+            ads=Ad.query.filter_by(category=category_filter).all()
+        else:
+            ads=Ad.query.filter_by(adtype=adtype_filter).all()
+        for ad in ads:
+            if ad.category == 'hairdresser':
+                category.append('Fodrász')
+            elif ad.category == 'cosmetician':
+                category.append('Kozmetikus')
+            else:
+                category.append('Körmös')
+            address.append(ad.address)
+            contact.append(ad.contact.replace('fb','Facebook:').replace('insta','Instagram:').replace('snap','Snapchat:').replace('_',' '))
+            if ad.adtype == 'exam':
+                adtype.append('Vizsga')
+            else:
+                adtype.append('Gyakorlás')
+            row+=1
+        return render_template("ads.html",row=row, user=current_user, adtype=adtype,contact=contact, address=address, category=category)
+    else:
+        ads=Ad.query.all()
+        for ad in ads:
+            if ad.category == 'hairdresser':
+                category.append('Fodrász')
+            elif ad.category == 'cosmetician':
+                category.append('Kozmetikus')
+            else:
+                category.append('Körmös')
+            address.append(ad.address)
+            contact.append(ad.contact.replace('fb','Facebook:').replace('insta','Instagram:').replace('snap','Snapchat:').replace('_',' '))
+            if ad.adtype == 'exam':
+                adtype.append('Vizsga')
+            else:
+                adtype.append('Gyakorlás')
+            row+=1
+        return render_template("ads.html",user=current_user,contact = contact, adtype = adtype, address=address, category=category, row=row)
 
 @views.route('/create-ad',methods=['GET', 'POST'])
 @login_required
