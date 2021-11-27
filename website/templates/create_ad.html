@@ -103,7 +103,7 @@
             <div class="row">
             <div class="col-md-1"></div>
             <div class="col-md-8">
-                <form method="POST">
+                <form method="POST" enctype=multipart/form-data>
                     <div class="form-group row">
                       <label for="category" class="col-4 col-form-label" style="font-size: 125%;">Kategória:</label> 
                       <div class="col-8">
@@ -125,7 +125,7 @@
                       <label for="prev_jobs" class="col-4 col-form-label" style="font-size: 125%;">Korábbi munkák</label> 
                       <div class="col-8">
                         <div class="input-group">
-                          <input id="prev_jobs" name="prev_jobs" placeholder="Kattints ide a képek feltöltéséhez" type="text" class="form-control"> 
+                          <input id="prev_jobs" name="file" placeholder="Kattints ide a képek feltöltéséhez" type="file" class="form-control"> 
                           <div class="input-group-append">
                             <div class="input-group-text">
                               <i class="fa fa-arrow-up"></i>

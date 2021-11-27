@@ -1,9 +1,15 @@
-from flask import Blueprint, render_template, flash, request, redirect, url_for
+from flask import Blueprint,Flask, render_template, flash, request, redirect, url_for
 from flask_login import login_required, current_user
 from .models import User, Ad
+from werkzeug.utils import secure_filename
+import os
 from . import db
 
 views = Blueprint('views', __name__)
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+def allowed_file(filename):
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @views.route('/')
 def home():
@@ -97,6 +103,20 @@ def create_ad():
         new_ad = Ad(user_id=current_user.id,category=category,address=address, contact=contact, adtype = adtype)
         db.session.add(new_ad)
         db.session.commit()
+        if request.method == 'POST':
+            # check if the post request has the file part
+            if 'file' not in request.files:
+                flash('No file part')
+                return redirect(request.url)
+            file = request.files['file']
+            # If the user does not select a file, the browser submits an
+            # empty file without a filename.
+            if file.filename == '':
+                flash('No selected file')
+                return redirect(request.url)
+            if file and allowed_file(file.filename):
+                filename = secure_filename(file.filename)
+                file.save(os.path.join('website/static/uploads',filename))
         flash('Ad created!', category='success')
         return redirect(url_for('views.home'))
     return render_template("create_ad.html", user=current_user)
