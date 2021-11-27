@@ -74,7 +74,6 @@ def ads():
 @login_required
 def create_ad():
     if request.method == 'POST':
-        #user_id TODO
         category = request.form.get('category')
         address = request.form.get('address')
         adtype = request.form.get('adtype')
@@ -104,19 +103,19 @@ def create_ad():
         db.session.add(new_ad)
         db.session.commit()
         if request.method == 'POST':
-            # check if the post request has the file part
-            if 'file' not in request.files:
+            if 'file[]' not in request.files:
                 flash('No file part')
                 return redirect(request.url)
-            file = request.files['file']
-            # If the user does not select a file, the browser submits an
-            # empty file without a filename.
-            if file.filename == '':
+            files = request.files.getlist("file[]")
+            if len(files) == 0:
                 flash('No selected file')
                 return redirect(request.url)
-            if file and allowed_file(file.filename):
-                filename = secure_filename(file.filename)
-                file.save(os.path.join('website/static/uploads',filename))
+            if files:
+                for file in files:
+                    filename = secure_filename(file.filename)
+                    if not os.path.exists('website/static/uploads/userid_'+str(current_user.id)):
+                        os.mkdir('website/static/uploads/userid_'+str(current_user.id))
+                    file.save(os.path.join('website/static/uploads/userid_'+str(current_user.id),filename))
         flash('Ad created!', category='success')
         return redirect(url_for('views.home'))
     return render_template("create_ad.html", user=current_user)
