@@ -11,6 +11,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
+
 @views.route('/')
 def home():
     return render_template("home.html")
@@ -69,6 +70,10 @@ def ads():
                 adtype.append('Gyakorlás')
             row+=1
         return render_template("ads.html",user=current_user,contact = contact, adtype = adtype, address=address, category=category, row=row)
+
+@views.route('/ad')
+def ad():
+    return "<h1>Ad site</h1>"
 
 @views.route('/create-ad',methods=['GET', 'POST'])
 @login_required

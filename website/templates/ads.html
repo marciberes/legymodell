@@ -28,10 +28,10 @@
 <div class=container style="border-radius: 0%; background-image: url(&quot/static/triangles_orange.png&quot); background-size: cover;">
     <div class="row header justify-content-center" style="margin-top:25px; margin-bottom: 10px">Légy modell!</div>
     <div class=row style="font-size: 150%; margin-bottom: 10px">
-        <div class=col-md-2>Kategória</div>
-        <div class=col-md-3>Cím</div>
-        <div class=col-md-5>Elérhetőség</div>
-        <div class=col-md-2>Típus</div>
+        <div class=col-md-1></div>
+        <div class=col-md-3>Kategória</div>
+        <div class=col-md-4>Cím</div>
+        <div class=col-md-4>Részletek</div>
     </div>
     {% if row==0 %}
     <div class=row>
@@ -44,19 +44,16 @@
     {% endif %}
     {% for i in range(row) %}
     <div class=row >
-        <div class=col-md-2>
+        <div class=col-md-1></div>
+        <div class=col-md-3>
             {{category[i]}}
         </div>
-        <div class=col-md-3>
+        <div class=col-md-4>
             {{address[i]}}
         </div>
-        <div class=col-md-5>
-            {{contact[i]}}
-        </div>
-        <div class=col-md-2>
-            {{adtype[i]}}
-        </div>
+        <div class=col-md-4><a href="/ad"><button class="button btn-primary">Részletek</button></a></div>
     </div>
+    
     {% endfor %}
     {% if user.is_authenticated %}
     <form method="POST">
