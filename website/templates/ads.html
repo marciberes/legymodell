@@ -51,7 +51,7 @@
         <div class=col-md-4>
             {{address[i]}}
         </div>
-        <div class=col-md-4><a href="/ad"><button class="button btn-primary">Részletek</button></a></div>
+        <div class=col-md-4><form action = "/ad" method = "POST"><button class="button btn-primary" name="ad_button"  value="{{ adid[i] }}">Részletek</button></form></div>
     </div>
     
     {% endfor %}

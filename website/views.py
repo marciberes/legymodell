@@ -19,6 +19,7 @@ def home():
 @views.route('/ads',methods=['GET', 'POST'])
 #@login_required
 def ads():
+    adid = []
     category = []
     address = []
     contact = []
@@ -45,6 +46,7 @@ def ads():
                 category.append('Kozmetikus')
             else:
                 category.append('Körmös')
+            adid.append(ad.id)
             address.append(ad.address)
             contact.append(ad.contact.replace('fb','Facebook:').replace('insta','Instagram:').replace('snap','Snapchat:').replace('_',' '))
             if ad.adtype == 'exam':
@@ -52,7 +54,7 @@ def ads():
             else:
                 adtype.append('Gyakorlás')
             row+=1
-        return render_template("ads.html",row=row, user=current_user, adtype=adtype,contact=contact, address=address, category=category)
+        return render_template("ads.html",row=row, user=current_user, adtype=adtype,contact=contact, address=address, category=category, adid = adid)
     else:
         ads=Ad.query.all()
         for ad in ads:
@@ -62,6 +64,7 @@ def ads():
                 category.append('Kozmetikus')
             else:
                 category.append('Körmös')
+            adid.append(ad.id)
             address.append(ad.address)
             contact.append(ad.contact.replace('fb','Facebook:').replace('insta','Instagram:').replace('snap','Snapchat:').replace('_',' '))
             if ad.adtype == 'exam':
@@ -69,11 +72,17 @@ def ads():
             else:
                 adtype.append('Gyakorlás')
             row+=1
-        return render_template("ads.html",user=current_user,contact = contact, adtype = adtype, address=address, category=category, row=row)
+        return render_template("ads.html",user=current_user,contact = contact, adtype = adtype, address=address, category=category, row=row, adid = adid)
 
-@views.route('/ad')
+@views.route('/ad', methods = ['GET', 'POST'])
 def ad():
-    return "<h1>Ad site</h1>"
+    if request.method == 'POST':
+        button_id = request.form["ad_button"]
+    ads = Ad.query.all()
+    for ad in ads:
+        if ad.id == int(button_id):
+            current_ad = ad
+    return render_template("ad.html", ad = current_ad)
 
 @views.route('/create-ad',methods=['GET', 'POST'])
 @login_required
