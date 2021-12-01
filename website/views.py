@@ -14,7 +14,7 @@ def allowed_file(filename):
 
 @views.route('/')
 def home():
-    return render_template("home.html")
+    return render_template("home.html", user=current_user)
 
 @views.route('/ads',methods=['GET', 'POST'])
 #@login_required
@@ -82,7 +82,7 @@ def ad():
     for ad in ads:
         if ad.id == int(button_id):
             current_ad = ad
-    return render_template("ad.html", ad = current_ad)
+    return render_template("ad.html", ad = current_ad, user=current_user)
 
 @views.route('/create-ad',methods=['GET', 'POST'])
 @login_required
