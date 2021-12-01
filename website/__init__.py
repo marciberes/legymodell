@@ -19,12 +19,12 @@ def creat_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User
+    from .models import User, Ad
 
     create_database(app)
 
     login_manager = LoginManager()
-    login_manager.login_view = 'view.home'
+    login_manager.login_view = 'views.home'
     login_manager.init_app(app)
 
     @login_manager.user_loader
