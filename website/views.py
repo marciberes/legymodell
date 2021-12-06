@@ -82,7 +82,9 @@ def ad():
     for ad in ads:
         if ad.id == int(button_id):
             current_ad = ad
-    return render_template("ad.html", ad = current_ad, user=current_user)
+    hists = os.listdir('website/static/uploads/userid_'+str(current_user.id))
+    hists = [file for file in hists]
+    return render_template("ad.html", ad = current_ad, user=current_user,  hists = hists)
 
 @views.route('/create-ad',methods=['GET', 'POST'])
 @login_required

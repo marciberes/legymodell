@@ -1,12 +1,72 @@
 {% extends "base.html" %}
 {% block title%}Ad{% endblock %}
 {% block style%}
-
+<style>
+body {
+    background-image: url("/static/triangles_background.png"); background-size: cover;
+  }
+  .col-md-8 {
+    background: white;
+    margin-top: 60px;
+    border-radius: 10px;
+    border-color: gray;
+    border: 3px;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  ul a {
+    font-size: 29px;
+    text-decoration: none;
+    color: darkgray;
+  }
+  td{
+    width: 220px;
+    height: 220px;
+  }
+  img{
+    max-width:100%;
+    max-height:100%;
+  }
+</style>
 {%endblock%}
 {% block content%}
-{{ad.id}}
-{{ad.category}}
-{{ad.address}}
-{{ad.adtype}}
-{{ad.contact}}
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="border-radius: 0%;">
+          <div class="row">
+            <div class="col-md-5" style="background-image: url(&quot/static/triangles_orange.png&quot); background-size: cover; padding-bottom: 1em;" >
+            <div style="color: white;">
+                <a style="color: black; font-size: 200%; font-weight: 500;">{{ad.id}}</a>
+              <p style="text-align:left; font-size: 200%; font-weight: bold; margin-top: 1em;">{{ad.category}}</p>
+              <p style="text-align: left;">Üdvözöllek {{user.first_name}} a hirdetésemen. <br> Lentebb találhatsz hasznos információkat illetve az elérhetőségeimet.<p><br>
+              <ul style="list-style-type: square">
+                <li>{{ad.adtype}}
+                </li>
+                <li>{{ad.address}}
+                </li>
+                <li>{{ad.contact}}
+                </li>
+              </ul>
+            </div>
+            </div>
+            <div class="col-md-7">
+                <a style="color: black; font-size: 200%; font-weight: 500;">Referencia munkák:</a>
+                  <table> 
+                    <tr>
+                      {% for hist in hists %}
+                      <td style="text-align: center;"><img src="static/uploads/userid_{{user.id}}/{{hist}}" width="210" height="210"></td>
+                      {% endfor %}
+                    </tr>
+                  </table> 
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </body>
+
 {%endblock%}
