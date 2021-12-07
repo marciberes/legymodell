@@ -28,6 +28,9 @@ body {
     max-width:100%;
     max-height:100%;
   }
+  .contact {
+        font-family: 'FontAwesome', 'Second Font name'
+  }
 </style>
 {%endblock%}
 {% block content%}
@@ -39,28 +42,26 @@ body {
           <div class="row">
             <div class="col-md-5" style="background-image: url(&quot/static/triangles_orange.png&quot); background-size: cover; padding-bottom: 1em;" >
             <div style="color: white;">
-                <a style="color: black; font-size: 200%; font-weight: 500;">{{ad.id}}</a>
-              <p style="text-align:left; font-size: 200%; font-weight: bold; margin-top: 1em;">{{ad.category}}</p>
+              <p style="text-align:left; font-size: 200%; font-weight: bold; margin-top: 1em;">{{adcategory_dict[ad.category]}}</p>
               <p style="text-align: left;">Üdvözöllek {{user.first_name}} a hirdetésemen. <br> Lentebb találhatsz hasznos információkat illetve az elérhetőségeimet.<p><br>
               <ul style="list-style-type: square">
-                <li>{{ad.adtype}}
+                <li>{{adtype_dict[ad.adtype]}}
                 </li>
                 <li>{{ad.address}}
                 </li>
-                <li>{{ad.contact}}
-                </li>
+                    {%for i in contactlist%}
+                    <li class="contact">{{contact_dict[i.split("...")[0]]+" "+i.split("...")[1]}}</li>
+                    {%endfor%}
               </ul>
             </div>
             </div>
             <div class="col-md-7">
-                <a style="color: black; font-size: 200%; font-weight: 500;">Referencia munkák:</a>
+                <div style="color: black; font-size: 200%; font-weight: 500;">Referencia munkák:</div>
                   <table> 
-                    <tr>
                       {% for hist in hists %}
-                      <td style="text-align: center;"><img src="static/uploads/userid_{{user.id}}/{{hist}}" width="210" height="210"></td>
+                      <tr style="text-align: center;"><img src="static/uploads/userid_{{ad.user_id}}/{{hist}}" width="300" height="210"></tr>
                       {% endfor %}
-                    </tr>
-                  </table> 
+                  </table>
             </div>
           </div>
         </div>

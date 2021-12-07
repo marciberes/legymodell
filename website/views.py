@@ -82,9 +82,16 @@ def ad():
     for ad in ads:
         if ad.id == int(button_id):
             current_ad = ad
-    hists = os.listdir('website/static/uploads/userid_'+str(current_user.id))
-    hists = [file for file in hists]
-    return render_template("ad.html", ad = current_ad, user=current_user,  hists = hists)
+    if os.path.exists('website/static/uploads/userid_'+str(current_ad.user_id)):
+        hists = os.listdir('website/static/uploads/userid_'+str(current_ad.user_id))
+        hists = [file for file in hists]
+    else:
+        hists = []
+    adcategory_dict = {"hairdresser" : "Fodrász", "cosmetician" : "Kozmetikus", "manicure" : "Körmös"}
+    adtype_dict = {"practice" : "Gyakorlás", "exam" : "Vizsga"}
+    contact_dict = {"fb" : "", "insta" : "", "snap" : ""}
+    contactlist = current_ad.contact.split(":::")
+    return render_template("ad.html", ad = current_ad, user=current_user,  hists = hists, adcategory_dict = adcategory_dict , adtype_dict = adtype_dict, contactlist = contactlist, contact_dict = contact_dict)
 
 @views.route('/create-ad',methods=['GET', 'POST'])
 @login_required
@@ -108,12 +115,12 @@ def create_ad():
         contactlist = []
         for i in range(0, len(contacticovalues)):
             ico = contacticovalues[i]
-            contacttext = contactvalues[i]
-            contactlist.append(ico)
-            contactlist.append(contacttext)
+            contacttext ="..." + contactvalues[i]
+            contact_to_append = ico + contacttext
+            contactlist.append(contact_to_append)
         
-        valami = "_".join(contactlist)
-        contact = request.form.get('contact_ico') + '_' + request.form.get('contact') + '_' + valami
+        valami = ":::".join(contactlist)
+        contact = request.form.get('contact_ico') + '...' + request.form.get('contact') + ':::' + valami
 
         new_ad = Ad(user_id=current_user.id,category=category,address=address, contact=contact, adtype = adtype)
         db.session.add(new_ad)
