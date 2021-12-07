@@ -1,12 +1,73 @@
 {% extends "base.html" %}
 {% block title%}Ad{% endblock %}
 {% block style%}
-
+<style>
+body {
+    background-image: url("/static/triangles_background.png"); background-size: cover;
+  }
+  .col-md-8 {
+    background: white;
+    margin-top: 60px;
+    border-radius: 10px;
+    border-color: gray;
+    border: 3px;
+  }
+  ul {
+    margin-bottom: 20px;
+  }
+  ul a {
+    font-size: 29px;
+    text-decoration: none;
+    color: darkgray;
+  }
+  td{
+    width: 220px;
+    height: 220px;
+  }
+  img{
+    max-width:100%;
+    max-height:100%;
+  }
+  .contact {
+        font-family: 'FontAwesome', 'Second Font name'
+  }
+</style>
 {%endblock%}
 {% block content%}
-{{ad.id}}
-{{ad.category}}
-{{ad.address}}
-{{ad.adtype}}
-{{ad.contact}}
+<body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8" style="border-radius: 0%;">
+          <div class="row">
+            <div class="col-md-5" style="background-image: url(&quot/static/triangles_orange.png&quot); background-size: cover; padding-bottom: 1em;" >
+            <div style="color: white;">
+              <p style="text-align:left; font-size: 200%; font-weight: bold; margin-top: 1em;">{{adcategory_dict[ad.category]}}</p>
+              <p style="text-align: left;">Üdvözöllek {{user.first_name}} a hirdetésemen. <br> Lentebb találhatsz hasznos információkat illetve az elérhetőségeimet.<p><br>
+              <ul style="list-style-type: square">
+                <li>{{adtype_dict[ad.adtype]}}
+                </li>
+                <li>{{ad.address}}
+                </li>
+                    {%for i in contactlist%}
+                    <li class="contact">{{contact_dict[i.split("...")[0]]+" "+i.split("...")[1]}}</li>
+                    {%endfor%}
+              </ul>
+            </div>
+            </div>
+            <div class="col-md-7">
+                <div style="color: black; font-size: 200%; font-weight: 500;">Referencia munkák:</div>
+                  <table> 
+                      {% for hist in hists %}
+                      <tr style="text-align: center;"><img src="static/uploads/userid_{{ad.user_id}}/{{hist}}" width="300" height="210"></tr>
+                      {% endfor %}
+                  </table>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-2"></div>
+      </div>
+    </div>
+  </body>
+
 {%endblock%}

@@ -34,7 +34,7 @@
         <div class=col-md-4>Részletek</div>
     </div>
     {% if row==0 %}
-    <div class=row>
+    <div class=row style="padding-bottom: 10px;">
         <div class=col-md-4></div>
         <div class=col-md-4 stlye="font-size: 200px">
             Nincs a feltételeknek megfelelő hírdetés!
@@ -43,15 +43,15 @@
     </div>
     {% endif %}
     {% for i in range(row) %}
-    <div class=row >
+    <div class=row style="background-image: url(/static/triangles_white.png); padding-bottom: 10px; margin: 15px;">
         <div class=col-md-1></div>
-        <div class=col-md-3>
-            {{category[i]}}
+        <div class=col-md-3 style="margin-top: 10px;"> 
+            {{category[i]}} 
         </div>
-        <div class=col-md-4>
+        <div class=col-md-4 style="margin-top: 10px;">
             {{address[i]}}
         </div>
-        <div class=col-md-4><form action = "/ad" method = "POST"><button class="button btn-primary" name="ad_button"  value="{{ adid[i] }}">Részletek</button></form></div>
+        <div class=col-md-4 style="margin-top: 10px;"><form action = "/ad" method = "POST"><button class="button btn-primary" name="ad_button"  value="{{ adid[i] }}">Részletek</button></form></div>
     </div>
     
     {% endfor %}
